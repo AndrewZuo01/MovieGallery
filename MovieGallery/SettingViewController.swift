@@ -1,14 +1,14 @@
 //
-//  MovieSearchFilter.swift
+//  ViewController.swift
 //  MovieGallery
 //
-//  Created by andrew on 2022/12/18.
+//  Created by andrew on 2022/12/17.
 //
 
 import UIKit
 
-class MovieSearchController: UIViewController{
-   
+class SettingViewController: UIViewController{
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -16,3 +16,4 @@ class MovieSearchController: UIViewController{
 
 
 }
+
