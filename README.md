@@ -1,2 +1,2 @@
 # MovieGallery
-(Copying and merging from school repository(private), setting license, plan on 12/20/2022)
+(Rebuilding from school repository, setting license, plan on 12/20/2022)
