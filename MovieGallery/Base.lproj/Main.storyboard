@@ -18,28 +18,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EvH-5v-EJB">
-                                <rect key="frame" x="40" y="73" width="335" height="31"/>
+                                <rect key="frame" x="40" y="73" width="335" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                    <segment title=""/>
-                                    <segment title=""/>
-                                    <segment title=""/>
+                                    <segment title="Popular"/>
+                                    <segment title="Now Playing"/>
+                                    <segment title="Top Rated"/>
+                                    <segment title="Upcoming"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedChange:" destination="Y0K-GE-gXm" eventType="valueChanged" id="nac-0U-ZKR"/>
+                                </connections>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Q6e-Ka-y2Z">
                                 <rect key="frame" x="20" y="121" width="374" height="692"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tJX-BS-iq0">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tJX-BS-iq0">
                                     <size key="itemSize" width="121" height="124"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XNd-TE-fMI">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="myCell" id="XNd-TE-fMI" customClass="populatMovieCells" customModule="MovieGallery" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="121" height="124"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RBq-4n-eSJ">
@@ -60,14 +62,27 @@
                                             </subviews>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="121" height="124"/>
+                                        <connections>
+                                            <outlet property="movieImage" destination="WeV-tV-fLU" id="qWY-BU-Amv"/>
+                                            <outlet property="movieTitle" destination="xXh-bH-N9S" id="Syl-Wz-fMv"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="WW2-LK-g6q">
+                                <rect key="frame" x="20" y="102" width="374" height="692"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PGe-j1-7pb"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="bookmarks" id="SDr-7V-KGU"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="WW2-LK-g6q" id="ozv-7T-jL0"/>
+                        <outlet property="myCollectionView" destination="Q6e-Ka-y2Z" id="HSJ-CW-bZY"/>
+                        <outlet property="mySegmentedView" destination="EvH-5v-EJB" id="Ziz-5w-Mde"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ci7-FT-nzX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -222,8 +237,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="IDL-mM-IGj" kind="relationship" relationship="viewControllers" id="1S4-d0-7J2"/>
                         <segue destination="Y0K-GE-gXm" kind="relationship" relationship="viewControllers" id="CVs-ET-4Ac"/>
+                        <segue destination="IDL-mM-IGj" kind="relationship" relationship="viewControllers" id="1S4-d0-7J2"/>
                         <segue destination="niC-S4-T5e" kind="relationship" relationship="viewControllers" id="fUO-Fs-Ft4"/>
                         <segue destination="uNK-Fc-k9X" kind="relationship" relationship="viewControllers" id="fzQ-hM-V7r"/>
                         <segue destination="Ui2-Ai-eGF" kind="relationship" relationship="viewControllers" id="67K-fi-fjf"/>
@@ -415,7 +430,7 @@
                                                     <rect key="frame" x="16" y="106" width="378" height="113"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
