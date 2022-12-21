@@ -64,16 +64,16 @@ class PopularMoviesController: UIViewController,UICollectionViewDelegate,UIColle
         var dataQuery:String =
         "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)"
         switch(resultIndex){
-            case 1:
-                dataQuery = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)"
-            case 2:
-                dataQuery = "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)"
-            case 3:
-                dataQuery = "https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)"
-            case 4:
-                dataQuery = "https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)"
-            default:
-                dataQuery = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)"
+        case 1:
+            dataQuery = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)"
+        case 2:
+            dataQuery = "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)"
+        case 3:
+            dataQuery = "https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)"
+        case 4:
+            dataQuery = "https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)"
+        default:
+            dataQuery = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)"
         }
         
         let url = URL(string: dataQuery)
@@ -132,7 +132,7 @@ class PopularMoviesController: UIViewController,UICollectionViewDelegate,UIColle
         let cellSize = UIScreen.main.bounds.width / 4
         
         let layout = UICollectionViewFlowLayout()
-//        layout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+        //        layout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         layout.itemSize = CGSize(width: cellSize, height: cellSize + cellSize / 2)
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
@@ -150,8 +150,8 @@ class PopularMoviesController: UIViewController,UICollectionViewDelegate,UIColle
             while(self.AllResultMovies.count < 5){
                 self.fetchDataFromIMDb(category: "action",resultIndex: self.AllResultMovies.count + 1)}
             
-            #warning("may deadlock")
-            DispatchQueue.main.sync {
+#warning("may deadlock")
+            DispatchQueue.main.async {
                 
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true

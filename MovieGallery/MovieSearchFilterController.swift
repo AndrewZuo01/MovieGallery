@@ -20,6 +20,7 @@ class MovieSearchController: UIViewController,UITableViewDelegate,UITableViewDat
     var resultAPI:[APIResults] = []
     var resultMovies:[Movie] = []
     var resultImages:[UIImage] = []
+    var searchTask: DispatchWorkItem?
     
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -37,17 +38,51 @@ class MovieSearchController: UIViewController,UITableViewDelegate,UITableViewDat
             cell.textView.text = resultMovies[indexPath.row].overview
             cell.movieImage.image = resultImages[indexPath.row]
         }
-        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        #warning("hardcode Height")
+#warning("hardcode Height")
         return 200
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchTask?.cancel()
+        resultAPI = []
+        resultMovies = []
+        resultImages = []
+        self.myTableView.reloadData()
+        //dispatch work because i need search text
+        if(searchText != ""){
+            let task = DispatchWorkItem { [weak self] in
+                self?.search(searchText: searchText)
+            }
+            self.searchTask = task
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: task)
+        }
+        
+        
+    }
+    @objc func search(searchText:String){
+        
+        let urlText = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        activityIndicator.isHidden = false
+        
+        activityIndicator.startAnimating()
+        DispatchQueue.global().async{
+            
+            self.fetchDataFromIMDb(searchWord: urlText)
+            DispatchQueue.main.async{
+                self.activityIndicator.isHidden = true
+                self.activityIndicator.stopAnimating()
+                self.myTableView.reloadData()
+            }
+        }
+                
+        
     }
     //TODO: search
     func fetchDataFromIMDb(searchWord: String){
         
-        let dataQuery = "https://api.themoviedb.org/3/search/movie?api_key=1a0641d65157900ca431780435771d34&language=en-US&query=a&page=1&include_adult=false"
+        let dataQuery = "https://api.themoviedb.org/3/search/movie?api_key=1a0641d65157900ca431780435771d34&language=en-US&query=\(searchWord)&page=1&include_adult=false"
         let url = URL(string: dataQuery)
         if(url != nil){
             let data = try! Data(contentsOf: url!)
@@ -79,16 +114,9 @@ class MovieSearchController: UIViewController,UITableViewDelegate,UITableViewDat
         searchBar.delegate = self
         activityIndicator.isHidden = true
         // Do any additional setup after loading the view.
-        DispatchQueue.global().async{
-            self.fetchDataFromIMDb(searchWord: "A")
-            DispatchQueue.main.sync{
-                self.activityIndicator.isHidden = true
-                self.activityIndicator.stopAnimating()
-                self.myTableView.reloadData()
-            }
-        }
+        
     }
     
-
-
+    
+    
 }
