@@ -69,7 +69,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="WW2-LK-g6q">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="WW2-LK-g6q">
                                 <rect key="frame" x="20" y="102" width="374" height="692"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
@@ -106,7 +106,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="182" id="k70-e1-Jfn">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchTableCell" rowHeight="182" id="k70-e1-Jfn" customClass="movieTableViewCell" customModule="MovieGallery" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="182"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k70-e1-Jfn" id="8Hg-5h-lEJ">
@@ -164,14 +164,30 @@
                                                 </view>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="UpperView" destination="hWb-ql-KxX" id="dbl-5B-J3M"/>
+                                            <outlet property="contentHolder" destination="8Hg-5h-lEJ" id="PMg-2J-gS6"/>
+                                            <outlet property="movieImage" destination="2Ez-BE-0uI" id="2q9-Yj-rmE"/>
+                                            <outlet property="stackLabels" destination="iEY-dF-tis" id="3NO-uG-p4H"/>
+                                            <outlet property="textView" destination="AgV-Of-cRE" id="Syj-7i-2d1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="axg-Id-7wj">
+                                <rect key="frame" x="0.0" y="438" width="414" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="IAL-bY-zbk"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="tnw-a4-T0V"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="axg-Id-7wj" id="0ib-sr-DAN"/>
+                        <outlet property="myTableView" destination="5iN-rL-N82" id="jCO-4x-Hnq"/>
+                        <outlet property="searchBar" destination="ZNB-pI-ziB" id="mCB-cx-07e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SeQ-3C-uok" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -276,7 +292,7 @@
             <objects>
                 <viewController id="kyh-Ki-3d1" customClass="SearchFriendController" customModule="MovieGallery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wGk-3b-scl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" id="B3l-lC-pjJ">
@@ -303,6 +319,7 @@
                         <viewLayoutGuide key="safeArea" id="m5b-rp-0Nh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="An4-Ds-yfu"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hAQ-TF-ccp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -349,6 +366,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <segue destination="kyh-Ki-3d1" kind="show" id="dnb-NM-IwU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2kd-m7-ItA"/>

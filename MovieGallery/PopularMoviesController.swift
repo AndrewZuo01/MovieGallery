@@ -73,7 +73,7 @@ class PopularMoviesController: UIViewController,UICollectionViewDelegate,UIColle
             case 4:
                 dataQuery = "https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)"
             default:
-            dataQuery = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)"
+                dataQuery = "https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)"
         }
         
         let url = URL(string: dataQuery)
@@ -125,7 +125,6 @@ class PopularMoviesController: UIViewController,UICollectionViewDelegate,UIColle
         return cell
         
     }
-    //TODO: detailed view
     
     
     override func viewDidLoad() {
@@ -144,6 +143,7 @@ class PopularMoviesController: UIViewController,UICollectionViewDelegate,UIColle
         myCollectionView.delegate = self
         
         activityIndicator.isHidden = true
+        
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
         DispatchQueue.global().async {
