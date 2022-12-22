@@ -54,6 +54,7 @@ class MovieSearchController: UIViewController,UITableViewDelegate,UITableViewDat
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailedViewController = self.storyboard!.instantiateViewController(withIdentifier: "detail") as! DetailedViewController
+        detailedViewController.movie = resultMovies[indexPath.row]
         self.navigationController!.pushViewController(detailedViewController, animated: true)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
