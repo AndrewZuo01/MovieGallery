@@ -15,6 +15,7 @@ struct Movie: Codable {
     var poster_path: String?
     var overview: String
     var release_date: String
+    var popularity: Float
 }
 struct APIResults:Codable {
     

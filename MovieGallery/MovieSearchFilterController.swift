@@ -13,6 +13,10 @@ class movieTableViewCell:UITableViewCell{
     @IBOutlet weak var stackLabels: UIStackView!
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var labelTitle: UILabel!
+    @IBOutlet weak var labelRelease: UILabel!
+    @IBOutlet weak var voteAverage: UILabel!
+    @IBOutlet weak var popularity: UILabel!
     
 }
 
@@ -37,6 +41,10 @@ class MovieSearchController: UIViewController,UITableViewDelegate,UITableViewDat
         }else{
             cell.textView.text = resultMovies[indexPath.row].overview
             cell.movieImage.image = resultImages[indexPath.row]
+            cell.labelTitle.text = resultMovies[indexPath.row].title
+            cell.labelRelease.text = resultMovies[indexPath.row].release_date
+            cell.voteAverage.text = String(format: "%.2f", resultMovies[indexPath.row].vote_average)
+            cell.popularity.text = String(format: "%.2f", resultMovies[indexPath.row].popularity)
         }
         return cell
     }
