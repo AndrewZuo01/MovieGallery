@@ -71,8 +71,6 @@ class MovieSearchController: UIViewController,UITableViewDelegate,UITableViewDat
             self.searchTask = task
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: task)
         }
-        
-        
     }
     @objc func search(searchText:String){
         
@@ -89,10 +87,7 @@ class MovieSearchController: UIViewController,UITableViewDelegate,UITableViewDat
                 self.myTableView.reloadData()
             }
         }
-                
-        
     }
-    //TODO: search
     func fetchDataFromIMDb(searchWord: String){
         
         let dataQuery = "https://api.themoviedb.org/3/search/movie?api_key=1a0641d65157900ca431780435771d34&language=en-US&query=\(searchWord)&page=1&include_adult=false"

@@ -24,4 +24,14 @@ struct APIResults:Codable {
     let total_pages: Int
     let results: [Movie]
 }
+struct Review: Codable {
+    var content: String
+}
+struct ReviewAPIResults:Codable {
+    let page: Int
+    let total_results: Int
+    let total_pages: Int
+    let results: [Review]
+}
+
 
