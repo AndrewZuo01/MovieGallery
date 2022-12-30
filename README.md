@@ -11,10 +11,10 @@ Mid-term(next week):
 - Social system: friends, friend lists, comments (currently IMDb doesn't allow post comment)
 
 Short-term(this week):
-- Recover the old documents
+- ~~Recover the old documents
 - Add log in
-- Finish detailed view
-- Design layout
+- ~~Finish detailed view
+- ~~Design layout
 
 
 
